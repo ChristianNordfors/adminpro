@@ -100,12 +100,13 @@ export class UsuariosComponent implements OnInit {
 
   swal.fire({
   title: '¿Está seguro?',
-  text: 'Está a punto de eliminar a ',
+  text: 'Está a punto de eliminar a ' + usuario.nombre,
   icon: 'warning',
   showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!'
+  confirmButtonColor: '#d33',
+  // cancelButtonColor: '#d33',
+  confirmButtonText: 'Eliminar',
+  cancelButtonText: 'Cancelar'
 })
 .then((borrar) => {
 
@@ -113,8 +114,8 @@ export class UsuariosComponent implements OnInit {
     this._usuarioService.borrarUsuario( usuario._id )
             .subscribe( borrado => {
               swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
+                'Usuario eliminado',
+                'El registro fue eliminado con éxito',
                 'success'
               )
               console.log(borrado);
@@ -122,7 +123,7 @@ export class UsuariosComponent implements OnInit {
             });
 
           } else if ( borrar.dismiss === swal.DismissReason.cancel ) {
-                // swal.fire('Cancelado', 'Tranquilo no se ha borrado nada!!', 'error');
+                // swal.fire('Cancelado', 'No se ha eliminado ningún registro', 'error');
               }
     });
   }
